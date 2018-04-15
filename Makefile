@@ -3,22 +3,24 @@ FLAGS=  -g -std=c++11
 CC=g++
 
 
-main:main.o huffman.o
+imageops:imageops.o main.o
 	$(CC) $(FLAGS) -o $@ $^
 
-main.o:main.cpp huffman.cpp huffman.h
+main.o:main.cpp imageops.cpp imageops.h
 	$(CC) $(FLAGS) -c $^
 
-huffman.o:huffman.cpp huffman.h
+imageops.o:imageops.cpp imageops.h
 	$(CC) $(FLAGS) -c $^
 run:
 	./main $(INPUT) $(OUTPUT)
 
 test:
 	$(CC) $(FLAGS) -Wall -o tests tests.cpp huffman.cpp huffman.h
-	./tests 
+	./tests
+
 run_test:
 	./tests
+
 build:
 	mkdir SBNCLA002
 	cp -r -t SBNCLA002 *.md *.cpp *.h .git Makefile
@@ -27,4 +29,4 @@ build:
 
 
 clean:
-	rm -f *.o  *.hdr
+	rm -f *.o imageops
