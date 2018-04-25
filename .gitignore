@@ -2,3 +2,9 @@
 *.pgm
 *.pdf
 *.tar.gz
+.xml
+*.o
+main
+*.out
+imageops
+*.h.gch

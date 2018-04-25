@@ -1,6 +1,9 @@
 #ifndef IMAGEOPS
 #define IMAGEOPS
 
+#include <memory>
+#include <string>
+#include <iostream>
 class Image
 {
 private:
@@ -9,7 +12,7 @@ std::unique_ptr<unsigned char[]> data;
 
 public:
   //constructors go here
-  Image(int w,int h);
+  Image(int ,int ,std::unique_ptr<unsigned char[]>);
 
 //copy constructor
 Image(Image &img);
@@ -30,7 +33,7 @@ void setWidth(int w){
 int getHeight()const{
   return height;
 }
-void setHieght(int h){
+void setHeight(int h){
   height=h;
 }
 
@@ -39,9 +42,62 @@ Image operator+(Image &);
 //subtraction operator overloaded here
 Image operator-(Image &);
 
+
+//iterator starts here
+
+    class iterator
+    {
+    private:
+        unsigned char *ptr;
+// construct only via Image class (begin/end)
+        iterator(unsigned char *p) : ptr(p) {}
+    public:
+//copy construct is public
+        iterator( const iterator & rhs) : ptr(rhs.ptr) {}
+// define overloaded ops: *, ++, --, =
+        iterator & operator=(const iterator & rhs)
+        {
+          *this =rhs;
+
+          return *this;
+        }
+
+        iterator &operator++(){
+          this->ptr+=1;
+          return *this;
+
+        }
+
+        iterator &operator--(){
+          this->ptr-=1;
+          return *this;
+
+        }
+
+        bool operator!=(const iterator & it){
+         return this->ptr!=it.ptr;
+        }
+
+        unsigned char& operator*(){
+            return *(ptr);
+        }
+
+// other methods for iterator
+    friend class Image;
+
+    };
+    void copy(Image&);
+    iterator begin(void) const { return iterator(data.get());}
+    iterator end(void) const{return iterator(begin().ptr+(height)*(width));}
+
+    void save(std::string);
+
 };
 
+namespace SBNCLA002{
+    Image load(std::string);
 
+}
 
 
 #endif

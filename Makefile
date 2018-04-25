@@ -1,5 +1,5 @@
 #make file for my assignment 2
-FLAGS=  -g -std=c++11
+FLAGS=  -g -Wall -std=c++11
 CC=g++
 
 
