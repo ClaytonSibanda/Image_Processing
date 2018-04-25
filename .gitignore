@@ -3,6 +3,7 @@
 *.pdf
 *.tar.gz
 .xml
+/.idea
 *.o
 main
 *.out
