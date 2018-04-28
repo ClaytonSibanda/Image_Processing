@@ -15,7 +15,7 @@ public:
   //constructors go here
   Image(int ,int ,std::unique_ptr<unsigned char[]>);
 
-  Image(int, int, unsigned char *);
+  // Image(int, int, unsigned char *);
 //copy constructor
 Image(Image &img);
 //copy assignment operator

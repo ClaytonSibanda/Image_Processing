@@ -10,9 +10,9 @@ Image::Image(int w,int h,std::unique_ptr<unsigned char[]> d):width(w),height(h){
 data=std::move(d);
 }
 
-Image::Image(int w,int h,unsigned char *buffer):width(w),height(h){
-data.reset(buffer);
-}
+// Image::Image(int w,int h,unsigned char *buffer):width(w),height(h){
+// data.reset(buffer);
+// }
 
 //copy constructors
 Image::Image(Image &img){
