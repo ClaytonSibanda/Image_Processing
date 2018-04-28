@@ -4,6 +4,7 @@
 #include <memory>
 #include <string>
 #include <iostream>
+#include <fstream>
 class Image
 {
 private:
@@ -27,9 +28,13 @@ Image& operator =(Image &&);
 int getWidth()const{
   return width;
 }
+std::unique_ptr<unsigned char[]>& getData(){
+  return data;
+}
 void setWidth(int w){
   width=w;
 }
+
 int getHeight()const{
   return height;
 }
@@ -42,6 +47,19 @@ Image operator+(Image &);
 //subtraction operator overloaded here
 Image operator-(Image &);
 
+//invertor operator overloaded here
+void operator!(void);
+
+//overload / operator for masking images
+Image operator/(Image &);
+
+//Threshold operator
+void operator*(int );
+
+//I/O operators overloading here
+
+friend void operator>>(std::ifstream &,Image &);
+friend void operator<<(std::ofstream &,Image &);
 
 //iterator starts here
 
@@ -91,7 +109,7 @@ Image operator-(Image &);
     iterator end(void) const{return iterator(begin().ptr+(height)*(width));}
 
     void save(std::string);
-
+    friend Image load(std::string);
 };
 
 namespace SBNCLA002{
