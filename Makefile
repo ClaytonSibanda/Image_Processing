@@ -15,8 +15,8 @@ run:
 	./main $(INPUT) $(OUTPUT)
 
 test:
-	$(CC) $(FLAGS) -Wall -o tests tests.cpp huffman.cpp huffman.h
-	./tests
+	$(CC) $(FLAGS) -Wall -o tests tests.cpp imageops.cpp imageops.h
+
 
 run_test:
 	./tests
@@ -29,4 +29,4 @@ build:
 
 
 clean:
-	rm -f *.o imageops
+	rm -f *.o imageops tests
